@@ -1,0 +1,4 @@
+.git/
+.idea/
+bitvavobot/config.py
+bitvavobot/__pycache__/
