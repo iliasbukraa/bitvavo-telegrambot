@@ -1,8 +1,10 @@
-from telegram.ext import Updater
+from telegram.ext import Updater, CommandHandler
 import logging
-from telegram.ext import CommandHandler
 from config import telegram_token
-from actions import *
+from balance import balance
+from tickerprice import tickerprice
+from symbols import symbols
+from wallet import wallet
 
 bot_token = telegram_token
 bot_user_name = "bitvavo-telegrambot"
@@ -21,15 +23,18 @@ def main() -> None:
 
     # Get the dispatcher to register handlers
     dispatcher = updater.dispatcher
+    queue = updater.job_queue
 
     # on different commands - answer in Telegram
     dispatcher.add_handler(CommandHandler("balance", balance))
-    dispatcher.add_handler(CommandHandler("assets", asset))
-    dispatcher.add_handler(CommandHandler("price", price))
-    dispatcher.add_handler(CommandHandler("getprice",get_price))
+    dispatcher.add_handler(CommandHandler("tickerprice",tickerprice))
+    dispatcher.add_handler(CommandHandler("symbols", symbols))
+    dispatcher.add_handler(CommandHandler("wallet",wallet))
 
     # Start the Bot
     updater.start_polling()
+
+    updater.idle()
 
     # Block until the user presses Ctrl-C or the process receives SIGINT,
     # SIGTERM or SIGABRT. This should be used most of the time, since

@@ -4,12 +4,12 @@ from python_bitvavo_api.bitvavo import Bitvavo
 bitvavo = Bitvavo({
     'APIKEY': bitvavo_token,
     'APISECRET': bitvavo_token_secret,
-    'RESTURL': 'https://api.bitvavo.com/v2',
-    'WSURL': 'wss://ws.bitvavo.com/v2/',
-    'ACCESSWINDOW': 10000,
-    'DEBUGGING': False
 })
 
+response = bitvavo.tickerPrice({})
+possible_tickers = [d["market"] for d in response]
+
+print(response)
 # possible_tokens = {}
 #
 # for token in bitvavo.assets({}):
@@ -20,4 +20,13 @@ bitvavo = Bitvavo({
 #
 # print(possible_tokens)
 
-print(bitvavo.tickerPrice({}))
+# print(bitvavo.tickerPrice({}))
+# possible_tokens={}
+# for token in bitvavo.assets({}):
+#     possible_tokens[token.get("symbol")] = token.get("name")
+#
+# print(possible_tokens)
+
+
+# response = bitvavo.account()
+# print(response)

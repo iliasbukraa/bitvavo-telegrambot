@@ -2,3 +2,4 @@
 .idea/
 bitvavobot/config.py
 bitvavobot/__pycache__/
+venv/
